@@ -1,6 +1,6 @@
 import Foundation
 
-import Shared
+import ProcessServiceShared
 
 extension NSXPCConnection {
     public func configureProcessServiceServer() throws {

@@ -2,7 +2,7 @@ import Foundation
 import Combine
 
 import ConcurrencyPlus
-import Shared
+import ProcessServiceShared
 
 public actor ExportedProcessServiceClient {
     public typealias ProcessEventSubject = PassthroughSubject<Process.Event, Error>

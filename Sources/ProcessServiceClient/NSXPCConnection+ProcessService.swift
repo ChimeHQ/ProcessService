@@ -1,6 +1,6 @@
 import Foundation
 
-import Shared
+import ProcessServiceShared
 
 extension NSXPCConnection {
     public static var processService: NSXPCConnection {

@@ -1,7 +1,7 @@
 import Foundation
 
 import ProcessEnv
-import Shared
+import ProcessServiceShared
 
 enum ProcessServiceError: Error {
     case unknownIdentifier(UUID)

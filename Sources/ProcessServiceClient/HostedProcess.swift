@@ -3,7 +3,7 @@ import Combine
 
 import ConcurrencyPlus
 import ProcessEnv
-import Shared
+import ProcessServiceShared
 
 enum UnrestrictedProcessError: Error {
     case alreadyLaunched(UUID)
