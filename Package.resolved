@@ -1,0 +1,25 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "ConcurrencyPlus",
+        "repositoryURL": "https://github.com/ChimeHQ/ConcurrencyPlus",
+        "state": {
+          "branch": null,
+          "revision": "ea44fa0a79a9ca4e6dad0420cf0b9876398bdc75",
+          "version": "0.2.3"
+        }
+      },
+      {
+        "package": "ProcessEnv",
+        "repositoryURL": "https://github.com/ChimeHQ/ProcessEnv",
+        "state": {
+          "branch": null,
+          "revision": "7bcb6c11593be08456f48042fad1a7bf875f217a",
+          "version": "0.3.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
