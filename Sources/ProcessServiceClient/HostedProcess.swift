@@ -108,3 +108,15 @@ public actor HostedProcess {
         }.value
     }
 }
+
+extension HostedProcess {
+    public static var userEnvironment: [String : String] {
+        get async throws {
+            let connection = NSXPCConnection.processService
+
+            return try await connection.withContinuation { (service: ProcessServiceXPCProtocol, continuation) in
+                service.captureUserEnvironment(reply: continuation.resumingHandler)
+            }
+        }
+    }
+}
