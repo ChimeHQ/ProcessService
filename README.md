@@ -1,7 +1,7 @@
 [![License][license badge]][license]
 
 # ProcessService
-Unsandboxed XPC service building blocks
+System to host an executable within an XPC service.
 
 ## Integration
 
