@@ -20,13 +20,13 @@ To interact with the service:
 ```swift
 import ProcessServiceClient
 
-let userEnv = try await HostedProcess.userEnvironment
+let userEnv = try await HostedProcess.userEnvironment(with: "com.myxpcservice")
 
-let process = HostedProcess(parameters: params)
+let process = HostedProcess(named: "com.myxpcservice", parameters: params)
 let data = try await process.runAndReadStdout()
 ```
 
-To make an XPC service:
+Here's now to make an XPC service. Make sure to match up the service bundle id with the name you use.
 
 ```swift
 // main.swift

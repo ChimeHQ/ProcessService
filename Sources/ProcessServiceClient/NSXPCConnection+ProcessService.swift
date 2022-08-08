@@ -3,18 +3,16 @@ import Foundation
 import ProcessServiceShared
 
 extension NSXPCConnection {
-    public static var processService: NSXPCConnection {
-        get {
-            let connection = NSXPCConnection(serviceName: "com.chimehq.ProcessService")
+    public static func processServiceConnection(named name: String) -> NSXPCConnection {
+        let connection = NSXPCConnection(serviceName: name)
 
-            connection.remoteObjectInterface = NSXPCInterface(with: ProcessServiceXPCProtocol.self)
+        connection.remoteObjectInterface = NSXPCInterface(with: ProcessServiceXPCProtocol.self)
 
-            connection.exportedInterface = NSXPCInterface(with: ProcessServiceClientXPCProtocol.self)
-            connection.exportedObject = ExportedProcessServiceClient()
+        connection.exportedInterface = NSXPCInterface(with: ProcessServiceClientXPCProtocol.self)
+        connection.exportedObject = ExportedProcessServiceClient()
 
-            connection.activate()
+        connection.activate()
 
-            return connection
-        }
+        return connection
     }
 }

@@ -24,8 +24,8 @@ public actor HostedProcess {
     let parameters: Process.ExecutionParameters
     private var uuid: UUID? = nil
 
-    public init(parameters: Process.ExecutionParameters) {
-        self.connection = NSXPCConnection.processService
+    public init(named name: String, parameters: Process.ExecutionParameters) {
+        self.connection = NSXPCConnection.processServiceConnection(named: name)
         self.parameters = parameters
     }
 
@@ -110,13 +110,11 @@ public actor HostedProcess {
 }
 
 extension HostedProcess {
-    public static var userEnvironment: [String : String] {
-        get async throws {
-            let connection = NSXPCConnection.processService
+    public static func userEnvironment(with serviceName: String) async throws -> [String : String] {
+        let connection = NSXPCConnection.processServiceConnection(named: serviceName)
 
-            return try await connection.withContinuation { (service: ProcessServiceXPCProtocol, continuation) in
-                service.captureUserEnvironment(reply: continuation.resumingHandler)
-            }
+        return try await connection.withContinuation { (service: ProcessServiceXPCProtocol, continuation) in
+            service.captureUserEnvironment(reply: continuation.resumingHandler)
         }
     }
 }
