@@ -24,12 +24,9 @@ public actor HostedProcess {
     let parameters: Process.ExecutionParameters
     private var uuid: UUID? = nil
 
-    public init(path: String, arguments: [String] = [], environment: [String : String]? = nil, currentDirectoryURL: URL? = nil) {
+    public init(parameters: Process.ExecutionParameters) {
         self.connection = NSXPCConnection.processService
-        self.parameters = Process.ExecutionParameters(path: path,
-                                                      arguments: arguments,
-                                                      environment: environment,
-                                                      currentDirectoryURL: currentDirectoryURL)
+        self.parameters = parameters
     }
 
     public func launch() async throws {
