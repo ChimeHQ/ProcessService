@@ -18,4 +18,4 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build
-        run: set -o pipefail && xcodebuild -scheme ProcessService -destination "platform=macOS" test | xcpretty
+        run: set -o pipefail && xcodebuild -scheme ProcessService-Package -destination "platform=macOS" build | xcpretty
