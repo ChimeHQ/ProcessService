@@ -55,6 +55,7 @@ public actor HostedProcess {
         })
     }
 
+#if swift(>=5.7)
     public var processEventPublisher: some Publisher<Process.Event, Error> {
         get async throws {
             guard let uuid = self.uuid else {
@@ -68,6 +69,21 @@ public actor HostedProcess {
             return await client.processEventPublisher(for: uuid)
         }
     }
+#else
+    public var processEventPublisher: ExportedProcessServiceClient.ProcessEventPublisher {
+        get async throws {
+            guard let uuid = self.uuid else {
+                throw UnrestrictedProcessError.notRunning
+            }
+
+            guard let client = connection.exportedObject as? ExportedProcessServiceClient else {
+                throw UnrestrictedProcessError.connectionInvalid
+            }
+
+            return await client.processEventPublisher(for: uuid)
+        }
+    }
+#endif
 
     public func write(_ data: Data) async throws {
         guard let uuid = self.uuid else {

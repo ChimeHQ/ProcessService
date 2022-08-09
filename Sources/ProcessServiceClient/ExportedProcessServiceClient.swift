@@ -6,7 +6,11 @@ import ProcessServiceShared
 
 public actor ExportedProcessServiceClient {
     public typealias ProcessEventSubject = PassthroughSubject<Process.Event, Error>
-    public typealias ProcessEventPublisher = Publisher<Process.Event, Error>
+//#if swift(>=5.7)
+//    public typealias ProcessEventPublisher = Publisher<Process.Event, Error>
+//#else
+    public typealias ProcessEventPublisher = AnyPublisher<Process.Event, Error>
+//#endif
 
     private var processEventSubjects = [UUID: ProcessEventSubject]()
     private let taskQueue = TaskQueue()
@@ -32,9 +36,15 @@ public actor ExportedProcessServiceClient {
         self.processEventSubjects[identifier] = nil
     }
 
-    public func processEventPublisher(for identifier: UUID) -> some ProcessEventPublisher {
-        return processEventSubject(for: identifier)
+//#if swift(>=5.7)
+//    public func processEventPublisher(for identifier: UUID) -> some ProcessEventPublisher {
+//        return processEventSubject(for: identifier)
+//    }
+//#else
+    public func processEventPublisher(for identifier: UUID) -> ProcessEventPublisher {
+        return processEventSubject(for: identifier).eraseToAnyPublisher()
     }
+//#endif
 }
 
 extension ExportedProcessServiceClient: ProcessServiceClientXPCProtocol {
