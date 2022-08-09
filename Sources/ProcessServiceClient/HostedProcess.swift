@@ -30,7 +30,7 @@ public actor HostedProcess {
     }
 
     public func launch() async throws {
-        if let uuid {
+        if let uuid = self.uuid {
             throw UnrestrictedProcessError.alreadyLaunched(uuid)
         }
 
@@ -104,7 +104,7 @@ public actor HostedProcess {
             var data = Data()
             var subscription: AnyCancellable? = nil
 
-            await withCheckedContinuation { continuation in
+            await withCheckedContinuation { (continuation: CheckedContinuation<(), Never>) in
                 subscription = eventPublisher.sink { _ in
                     continuation.resume()
 
