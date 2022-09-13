@@ -11,7 +11,12 @@ extension NSXPCConnection {
         connection.exportedInterface = NSXPCInterface(with: ProcessServiceClientXPCProtocol.self)
         connection.exportedObject = ExportedProcessServiceClient()
 
-        connection.activate()
+		#if compiler(>=5.7)
+		// this API is available in 11.0, but only exposed in the headers for 13.0
+		connection.activate()
+		#else
+		connection.resume()
+		#endif
 
         return connection
     }
