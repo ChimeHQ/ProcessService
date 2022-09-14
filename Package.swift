@@ -17,5 +17,7 @@ let package = Package(
         .target(name: "ProcessServiceShared"),
         .target(name: "ProcessServiceServer", dependencies: ["ProcessServiceShared", "ConcurrencyPlus", "ProcessEnv"]),
         .target(name: "ProcessServiceClient", dependencies: ["ProcessServiceShared", "ConcurrencyPlus", "ProcessEnv"]),
+
+		.testTarget(name: "ProcessServiceServerTests", dependencies: ["ProcessServiceServer", "ConcurrencyPlus"]),
     ]
 )

@@ -19,6 +19,9 @@ extension Process {
     }
 }
 
+/// An interface to a remote ExportedProcessService instance
+///
+/// You can use this class to start and control a remote `ExportedProcessService`.
 public actor HostedProcess {
     private let connection: NSXPCConnection
     let parameters: Process.ExecutionParameters
@@ -126,6 +129,10 @@ public actor HostedProcess {
 }
 
 extension HostedProcess {
+	/// Capture the interactive-login shell environment
+	///
+	/// This function makes use of the `userEnvironment` function
+	/// in `ProcessEnv`.
     public static func userEnvironment(with serviceName: String) async throws -> [String : String] {
         let connection = NSXPCConnection.processServiceConnection(named: serviceName)
 
