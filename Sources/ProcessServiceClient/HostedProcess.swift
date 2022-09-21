@@ -32,6 +32,10 @@ public actor HostedProcess {
         self.parameters = parameters
     }
 
+    deinit {
+        connection.invalidate()
+    }
+
     public func launch() async throws {
         if let uuid = self.uuid {
             throw UnrestrictedProcessError.alreadyLaunched(uuid)

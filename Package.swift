@@ -10,7 +10,7 @@ let package = Package(
         .library(name: "ProcessServiceClient", targets: ["ProcessServiceClient"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/ChimeHQ/ConcurrencyPlus", from: "0.3.1"),
+        .package(url: "https://github.com/ChimeHQ/ConcurrencyPlus", from: "0.3.2"),
         .package(url: "https://github.com/ChimeHQ/ProcessEnv", from: "0.3.0"),
     ],
     targets: [
