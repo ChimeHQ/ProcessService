@@ -11,8 +11,22 @@ System to host an executable within an XPC service.
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/ChimeHQ/ProcessService")
+    .package(url: "https://github.com/ChimeHQ/ProcessService", branch: "main")
 ]
+```
+
+### XPC Service
+
+To be useful, you also need an actual XPC service that hosts the process server. Distributing an XPC service using SPM requires a workaround: bundling a pre-built binary in an xcframework. This comes with two disadvantages. It requires that you both link and embed the framework, which incurs size and potential launch-time impact. And, second, it requires a bootstrapping step to ensure the service can be found at runtime anywhere within the running process.
+
+This is all **optional** and provided for convenience. You can just build your own service if you want.
+
+```swift
+import ProcessServiceContainer
+
+ServiceContainer.bootstrap()
+
+let userEnv = try await HostedProcess.userEnvironment(with: ServiceContainer.name)
 ```
 
 ## Usage

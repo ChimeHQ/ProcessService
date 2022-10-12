@@ -1,0 +1,8 @@
+SWIFT_VERSION = 5.0
+
+BUILD_LIBRARY_FOR_DISTRIBUTION = YES
+ENABLE_HARDENED_RUNTIME = YES
+MACH_O_TYPE = mh_dylib
+
+
+INFOPLIST_KEY_NSHumanReadableCopyright = Copyright © 2022 Chime Systems Inc. All rights reserved.

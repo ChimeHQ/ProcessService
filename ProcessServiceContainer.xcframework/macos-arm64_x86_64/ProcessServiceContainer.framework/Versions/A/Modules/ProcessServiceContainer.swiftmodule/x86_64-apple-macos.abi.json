@@ -1,0 +1,103 @@
+{
+  "ABIRoot": {
+    "kind": "Root",
+    "name": "TopLevel",
+    "printedName": "TopLevel",
+    "children": [
+      {
+        "kind": "TypeDecl",
+        "name": "ServiceContainer",
+        "printedName": "ServiceContainer",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "name",
+            "printedName": "name",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:23ProcessServiceContainer0bC0V4nameSSvpZ",
+            "mangledName": "$s23ProcessServiceContainer0bC0V4nameSSvpZ",
+            "moduleName": "ProcessServiceContainer",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:23ProcessServiceContainer0bC0V4nameSSvgZ",
+                "mangledName": "$s23ProcessServiceContainer0bC0V4nameSSvgZ",
+                "moduleName": "ProcessServiceContainer",
+                "static": true,
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Function",
+            "name": "bootstrap",
+            "printedName": "bootstrap()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:23ProcessServiceContainer0bC0V9bootstrapyyFZ",
+            "mangledName": "$s23ProcessServiceContainer0bC0V9bootstrapyyFZ",
+            "moduleName": "ProcessServiceContainer",
+            "static": true,
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Struct",
+        "usr": "s:23ProcessServiceContainer0bC0V",
+        "mangledName": "$s23ProcessServiceContainer0bC0V",
+        "moduleName": "ProcessServiceContainer",
+        "declAttributes": [
+          "AccessControl"
+        ]
+      }
+    ],
+    "json_format_version": 8
+  },
+  "ConstValues": [
+    {
+      "filePath": "\/Users\/matt\/Chime\/Code\/ProcessService\/Projects\/ProcessServiceContainer\/Bootstrap.swift",
+      "kind": "StringLiteral",
+      "offset": 101,
+      "length": 28,
+      "value": "\"com.chimehq.ProcessService\""
+    }
+  ]
+}

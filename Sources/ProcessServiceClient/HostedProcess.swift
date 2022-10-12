@@ -27,7 +27,7 @@ public actor HostedProcess {
     let parameters: Process.ExecutionParameters
     private var uuid: UUID? = nil
 
-    public init(named name: String, parameters: Process.ExecutionParameters) {
+	public init(named name: String, parameters: Process.ExecutionParameters) {
         self.connection = NSXPCConnection.processServiceConnection(named: name)
         self.parameters = parameters
     }

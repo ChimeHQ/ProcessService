@@ -1,0 +1,11 @@
+framework module ProcessServiceContainer {
+  umbrella header "ProcessServiceContainer.h"
+
+  export *
+  module * { export * }
+}
+
+module ProcessServiceContainer.Swift {
+  header "ProcessServiceContainer-Swift.h"
+  requires objc
+}
