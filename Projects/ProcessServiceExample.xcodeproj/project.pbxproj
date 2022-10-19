@@ -79,6 +79,7 @@
 		C94A3F9F28F6C75300188226 /* ProcessServiceContainer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ProcessServiceContainer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C94A3FA128F6C75300188226 /* ProcessServiceContainer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProcessServiceContainer.h; sourceTree = "<group>"; };
 		C94A3FAB28F6C76E00188226 /* ProcessServiceContainer.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ProcessServiceContainer.xcconfig; sourceTree = "<group>"; };
+		C9D36FFB290060660050984D /* ProcessService.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ProcessService.entitlements; sourceTree = "<group>"; };
 		C9DCF99328DA3E94009ACED7 /* ProcessServiceExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProcessServiceExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9DCF99628DA3E94009ACED7 /* ProcessServiceExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessServiceExampleApp.swift; sourceTree = "<group>"; };
 		C9DCF99828DA3E94009ACED7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -174,6 +175,7 @@
 		C9DCF9AB28DA3F10009ACED7 /* ProcessService */ = {
 			isa = PBXGroup;
 			children = (
+				C9D36FFB290060660050984D /* ProcessService.entitlements */,
 				C9DCF9B028DA3F10009ACED7 /* main.swift */,
 				C9DCF9B228DA3F10009ACED7 /* Info.plist */,
 			);
@@ -615,9 +617,11 @@
 		C9DCF9B728DA3F10009ACED7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ProcessService/ProcessService.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ProcessService/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ProcessService;
@@ -634,9 +638,11 @@
 		C9DCF9B828DA3F10009ACED7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ProcessService/ProcessService.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ProcessService/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ProcessService;

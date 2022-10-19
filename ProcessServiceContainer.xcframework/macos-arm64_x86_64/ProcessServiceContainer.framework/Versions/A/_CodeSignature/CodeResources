@@ -6,7 +6,7 @@
 	<dict>
 		<key>Resources/Info.plist</key>
 		<data>
-		QZLozY12UdcbJpMdVAP5m9KLfDs=
+		yacHYAjtqBMiSOeGni4PoIC/o7c=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -15,7 +15,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			1vVW0z67ogBsDFwHnOUaUZD0Gkml3FF24fSM/30D27U=
+			eH2wFlHiM5XX7jI10QYU10LY1RgPA+SQRe3EKseSCOk=
 			</data>
 		</dict>
 		<key>Headers/ProcessServiceContainer.h</key>
@@ -29,14 +29,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			hHhwix6Mro5vKil5v+khiGehrDlnpOdMwf2apOcIU3U=
+			zrnLp/76N3KqnZLS9upwYglvVbLAmJCv4VzQ7OQkDyY=
 			</data>
 		</dict>
 		<key>Modules/ProcessServiceContainer.swiftmodule/Project/x86_64-apple-macos.swiftsourceinfo</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			mJijLDh6rj/nht/6N29FjBh9+6aZrGGzw1GyXuWklTs=
+			SePHw+yQWSxHBeIblfR3tOwCm9PaEeIb+cOPAUdQRrs=
 			</data>
 		</dict>
 		<key>Modules/ProcessServiceContainer.swiftmodule/arm64-apple-macos.abi.json</key>
@@ -50,28 +50,28 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			DmNmwJQenZFTUQgeohroAGW5JMiQA1ogSaEQHAtQFAk=
+			IOi3ReDXhRYMnzm8UYjl8EISpnPbCCCrpEDDfvLk9Qk=
 			</data>
 		</dict>
 		<key>Modules/ProcessServiceContainer.swiftmodule/arm64-apple-macos.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			XT3qk9uIIHRA9/V+iXs/SZKRz6y3M744UQijU2STqo0=
+			kiVXXim86MM4xV4tAQ7uqFAei6wKFuADJObtFSjwO2c=
 			</data>
 		</dict>
 		<key>Modules/ProcessServiceContainer.swiftmodule/arm64-apple-macos.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			DmNmwJQenZFTUQgeohroAGW5JMiQA1ogSaEQHAtQFAk=
+			IOi3ReDXhRYMnzm8UYjl8EISpnPbCCCrpEDDfvLk9Qk=
 			</data>
 		</dict>
 		<key>Modules/ProcessServiceContainer.swiftmodule/arm64-apple-macos.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			NIkvWwJnLR4uUkdnlo9z4fK0oKhae4kbRvpSRcYQRis=
+			WwMflgQ6ATxP08y+0Aj1UlIijzhDZckRol6sdf4+Ids=
 			</data>
 		</dict>
 		<key>Modules/ProcessServiceContainer.swiftmodule/x86_64-apple-macos.abi.json</key>
@@ -85,28 +85,28 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			sFIbm7U+U9JJbRnEpJ8+HHZL6pBVEbJaqn0vAGWS7ns=
+			FnBhXM8rKg7k5XK9CoXbJuiBdbDvH+8wR25a9WSz9/I=
 			</data>
 		</dict>
 		<key>Modules/ProcessServiceContainer.swiftmodule/x86_64-apple-macos.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			iQoth2ZHVS+maQBkh1NuaxsjOzXm6hW+FKBi7y9oQUo=
+			J612jsoSLvE1kaGTYTOA1YVmWvMWXSpfn9x4LavY+mE=
 			</data>
 		</dict>
 		<key>Modules/ProcessServiceContainer.swiftmodule/x86_64-apple-macos.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			sFIbm7U+U9JJbRnEpJ8+HHZL6pBVEbJaqn0vAGWS7ns=
+			FnBhXM8rKg7k5XK9CoXbJuiBdbDvH+8wR25a9WSz9/I=
 			</data>
 		</dict>
 		<key>Modules/ProcessServiceContainer.swiftmodule/x86_64-apple-macos.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			MIPuJXbOzF/Wryyr5YcVLrhgW+xhiPfM7tT/mvCLfyY=
+			sEoBstn+Ifk1SdHeaQVZQQMCC8JK5Nyv/403OBL1CMA=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
@@ -120,17 +120,17 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			IBMf7PdNMaW9mE14lNUwNe/ZPqIRZIAUSKme0QIXu7o=
+			s42UUwmh6p3fDIjnf93WwxedMMEQ1kz5t7hEd70kdLU=
 			</data>
 		</dict>
 		<key>XPCServices/ProcessService.xpc</key>
 		<dict>
 			<key>cdhash</key>
 			<data>
-			h79s2LF2Ix6SQZ2VpahzpMxGJRY=
+			hSwpLjY9IR/CtGdSY49Un66D3uk=
 			</data>
 			<key>requirement</key>
-			<string>cdhash H"87bf6cd8b176231e92419d95a5a873a4cc462516" or cdhash H"6733299da969a0c97a42e4a62184f7f600b76ba5"</string>
+			<string>cdhash H"852c292e363d211fc2b46752638f549fae83dee9" or cdhash H"8fffa2811610431f982422f4b8edca7ffd392b5d"</string>
 		</dict>
 	</dict>
 	<key>rules</key>
