@@ -6,7 +6,7 @@
 	<dict>
 		<key>Resources/Info.plist</key>
 		<data>
-		yacHYAjtqBMiSOeGni4PoIC/o7c=
+		Jwa487BfGprw1mMXe8JyGThSCuw=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -120,17 +120,17 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			s42UUwmh6p3fDIjnf93WwxedMMEQ1kz5t7hEd70kdLU=
+			xk0ddvhqFDHwgSqNOhjMXa7cFdH7ZEa5BUc0gdrsrcM=
 			</data>
 		</dict>
 		<key>XPCServices/ProcessService.xpc</key>
 		<dict>
 			<key>cdhash</key>
 			<data>
-			hSwpLjY9IR/CtGdSY49Un66D3uk=
+			Nt0tnT6Smz75W/Vzeodduvos9bw=
 			</data>
 			<key>requirement</key>
-			<string>cdhash H"852c292e363d211fc2b46752638f549fae83dee9" or cdhash H"8fffa2811610431f982422f4b8edca7ffd392b5d"</string>
+			<string>cdhash H"36dd2d9d3e929b3ef95bf5737a875dbafa2cf5bc" or cdhash H"659a38ddb5fa051093046d9511a4ff0014308d0e"</string>
 		</dict>
 	</dict>
 	<key>rules</key>
