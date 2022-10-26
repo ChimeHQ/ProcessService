@@ -69,9 +69,9 @@ actor ExportedProcessService {
         process.standardInput = stdinPipe
         process.standardError = stderrPipe
 
-        process.terminationHandler = { [unowned self] in self.handleProcessTermination(with: uuid, process: $0) }
+        process.terminationHandler = { [weak self] in self?.handleProcessTermination(with: uuid, process: $0) }
 
-        stdoutPipe.fileHandleForReading.readabilityHandler = { [unowned self] (handle) in
+        stdoutPipe.fileHandleForReading.readabilityHandler = { [weak self] (handle) in
             let data = handle.availableData
 
             guard data.count > 0 else {
@@ -81,17 +81,17 @@ actor ExportedProcessService {
                 return
             }
 
-            self.client.launchedProcess(with: uuid, stdoutData: data)
+            self?.client.launchedProcess(with: uuid, stdoutData: data)
         }
 
-        stderrPipe.fileHandleForReading.readabilityHandler = { [unowned self] (handle) in
+        stderrPipe.fileHandleForReading.readabilityHandler = { [weak self] (handle) in
             let data = handle.availableData
 
             guard data.count > 0 else {
                 return
             }
 
-            self.client.launchedProcess(with: uuid, stderrData: data)
+            self?.client.launchedProcess(with: uuid, stderrData: data)
         }
 
         // this must be set before we launch, so
@@ -134,4 +134,18 @@ extension ExportedProcessService: ProcessServiceXPCProtocol {
 
         reply(env, nil)
     }
+
+	nonisolated func userShellInvocation(of executionParametersData: Data, reply: @escaping (Data?, Error?) -> Void) {
+		do {
+			let params = try JSONDecoder().decode(Process.ExecutionParameters.self, from: executionParametersData)
+
+			let userParams = params.userShellInvocation()
+
+			let paramsData = try JSONEncoder().encode(userParams)
+
+			reply(paramsData, nil)
+		} catch {
+			reply(nil, error)
+		}
+	}
 }

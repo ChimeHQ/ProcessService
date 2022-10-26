@@ -12,7 +12,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/ChimeHQ/ConcurrencyPlus", from: "0.3.2"),
-        .package(url: "https://github.com/ChimeHQ/ProcessEnv", from: "0.3.0"),
+        .package(url: "https://github.com/ChimeHQ/ProcessEnv", from: "0.3.1"),
     ],
     targets: [
         .target(name: "ProcessServiceShared"),

@@ -8,6 +8,7 @@ import Combine
     func writeDataToStdin(_ data: Data, for identifier: UUID, reply: @escaping (Error?) -> Void)
 
     func captureUserEnvironment(reply: @escaping ([String: String]?, Error?) -> Void)
+	func userShellInvocation(of executionParametersData: Data, reply: @escaping (Data?, Error?) -> Void)
 }
 
 @objc public protocol ProcessServiceClientXPCProtocol {

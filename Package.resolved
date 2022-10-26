@@ -6,8 +6,8 @@
         "repositoryURL": "https://github.com/ChimeHQ/ConcurrencyPlus",
         "state": {
           "branch": null,
-          "revision": "b5cd06e9be22de9e5d379fe496a666647a6717ef",
-          "version": "0.3.2"
+          "revision": "d603e3f8be17e71d93ec650fb31674b928b26e22",
+          "version": "0.3.3"
         }
       },
       {
@@ -15,8 +15,8 @@
         "repositoryURL": "https://github.com/ChimeHQ/ProcessEnv",
         "state": {
           "branch": null,
-          "revision": "7bcb6c11593be08456f48042fad1a7bf875f217a",
-          "version": "0.3.0"
+          "revision": "29487b6581bb785c372c611c943541ef4309d051",
+          "version": "0.3.1"
         }
       }
     ]

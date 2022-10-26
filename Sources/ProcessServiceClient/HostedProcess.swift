@@ -133,7 +133,7 @@ public actor HostedProcess {
 }
 
 extension HostedProcess {
-	/// Capture the interactive-login shell environment
+	/// Capture the interactive-login shell environment.
 	///
 	/// This function makes use of the `userEnvironment` function
 	/// in `ProcessEnv`.
@@ -144,4 +144,17 @@ extension HostedProcess {
             service.captureUserEnvironment(reply: continuation.resumingHandler)
         }
     }
+
+	/// Returns parameters that emulate an invocation in the user's shell.
+	///
+	/// See `ProcessEnv` documentation for details.
+	public static func userShellInvocation(of params: Process.ExecutionParameters,
+										   with serviceName: String) async throws -> Process.ExecutionParameters {
+		let paramsData = try JSONEncoder().encode(params)
+		let connection = NSXPCConnection.processServiceConnection(named: serviceName)
+
+		return try await connection.withContinuation { (service: ProcessServiceXPCProtocol, continuation) in
+			service.userShellInvocation(of: paramsData, reply: continuation.resumingHandler)
+		}
+	}
 }
