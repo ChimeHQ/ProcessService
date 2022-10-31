@@ -71,7 +71,7 @@ class ExportedProcessServiceTests: XCTestCase {
 
 		var events = subject.map({ $0.1 }).makeAsyncIterator()
 
-		for _ in 0..<10000 {
+		for _ in 0..<30000 {
 //			print("iteration start \(i)")
 
 			_ = try await service.launchProcess(with: params)

@@ -9,7 +9,7 @@ enum ProcessServiceError: Error {
 }
 
 extension Process {
-	struct StdioPipeSet {
+	struct StdioPipeSet: Hashable, Sendable {
 		let stdin: Pipe
 		let stdout: Pipe
 		let stderr: Pipe
@@ -45,20 +45,21 @@ extension Process {
 	}
 }
 
-actor ExportedProcessService {
+final class ExportedProcessService: @unchecked Sendable {
     private var processes: [UUID: Process] = [:]
     private let client: ProcessServiceClientXPCProtocol
+	private let queue = DispatchQueue(label: "com.chimehq.ProcessService.ExportedProcessService")
 
     public init(client: ProcessServiceClientXPCProtocol) {
         self.client = client
     }
 
-    private nonisolated func handleProcessTermination(with uuid: UUID, process: Process) {
+    private func handleProcessTermination(with uuid: UUID, process: Process) {
 		let pipeSet = process.stdioPipeSet
 		let reason = process.terminationReason
 
-		Task {
-			await self.finish(with: uuid, pipeSet: pipeSet, reason: reason)
+		queue.async {
+			self.finish(with: uuid, pipeSet: pipeSet, reason: reason)
 		}
     }
 
@@ -87,21 +88,41 @@ actor ExportedProcessService {
 	}
 
     func terminateProcess(with identifier: UUID) async throws {
-        guard let process = processes[identifier] else {
-            throw ProcessServiceError.unknownIdentifier(identifier)
-        }
+		try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<(), Error>) in
+			queue.async {
+				guard let process = self.processes[identifier] else {
+					continuation.resume(throwing: ProcessServiceError.unknownIdentifier(identifier))
 
-        process.terminate()
+					return
+				}
+
+				process.terminate()
+
+				continuation.resume()
+			}
+		}
     }
 
     private func writeDataToStdin(_ data: Data, for identifier: UUID) async throws {
-        let process = processes[identifier]
+		try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<(), Error>) in
+			queue.async {
+				let process = self.processes[identifier]
 
-        guard let pipe = process?.standardInput as? Pipe else {
-            throw ProcessServiceError.unknownIdentifier(identifier)
-        }
+				guard let pipe = process?.standardInput as? Pipe else {
+					continuation.resume(with: .failure(ProcessServiceError.unknownIdentifier(identifier)))
+					return
+				}
 
-        try pipe.fileHandleForWriting.write(contentsOf: data)
+				do {
+					try pipe.fileHandleForWriting.write(contentsOf: data)
+
+					continuation.resume()
+				} catch {
+					continuation.resume(with: .failure(error))
+				}
+
+			}
+		}
     }
 
 	private func handleProcessEvent(_ event: Process.Event, for uuid: UUID) {
@@ -115,33 +136,16 @@ actor ExportedProcessService {
 		}
 	}
 
-	private func readFromStdoutHandle(_ handle: FileHandle, for uuid: UUID) {
-		if handle.readabilityHandler == nil {
-			return
-		}
-		
-		let data = handle.availableData
+	private func prepareProcess(with params: Process.ExecutionParameters, uuid: UUID) -> Process {
+		let process = Process()
 
-		if data.isEmpty {
-			handle.readabilityHandler = nil
-
-			return
-		}
-
-		self.handleProcessEvent(.stdout(data), for: uuid)
-	}
-
-	func launchProcess(with params: Process.ExecutionParameters) async throws -> UUID {
-        let uuid = UUID()
-        let process = Process()
-
-        process.parameters = params
+		process.parameters = params
 
 		let pipeSet = Process.StdioPipeSet()
 
-        process.stdioPipeSet = pipeSet
+		process.stdioPipeSet = pipeSet
 
-        process.terminationHandler = { [weak self] in
+		process.terminationHandler = { [weak self] in
 			self?.handleProcessTermination(with: uuid, process: $0)
 		}
 
@@ -151,25 +155,42 @@ actor ExportedProcessService {
 				return
 			}
 
-			Task {
-				await self.readFromStdoutHandle(handle, for: uuid)
+			self.queue.sync {
+				let data = handle.availableData
+				if data.isEmpty {
+					handle.readabilityHandler = nil
+					return
+				}
+
+				self.handleProcessEvent(.stdout(data), for: uuid)
 			}
 		}
 
-        // this must be set before we launch, so
-        // we can deal with any data immediately
-        self.processes[uuid] = process
+		return process
+	}
 
-        do {
-            try process.run()
-        } catch {
-            self.processes[uuid] = nil
+	func launchProcess(with params: Process.ExecutionParameters) async throws -> UUID {
+		return try await withCheckedThrowingContinuation({ continuation in
+			self.queue.async {
+				let uuid = UUID()
+				let process = self.prepareProcess(with: params, uuid: uuid)
 
-            throw error
-        }
+				// this must be set before we launch, so
+				// we can deal with any data immediately
+				self.processes[uuid] = process
 
-        return uuid
-    }
+				do {
+					try process.run()
+
+					self.processes[uuid] = process
+
+					continuation.resume(returning: uuid)
+				} catch {
+					continuation.resume(throwing: error)
+				}
+			}
+		})
+	}
 }
 
 extension ExportedProcessService: ProcessServiceXPCProtocol {
