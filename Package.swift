@@ -11,7 +11,7 @@ let package = Package(
 		.library(name: "ProcessServiceContainer", targets: ["ProcessServiceContainer"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/ChimeHQ/ConcurrencyPlus", from: "0.3.2"),
+        .package(url: "https://github.com/ChimeHQ/ConcurrencyPlus", from: "0.4.0"),
         .package(url: "https://github.com/ChimeHQ/ProcessEnv", from: "0.3.1"),
     ],
     targets: [
@@ -20,6 +20,7 @@ let package = Package(
         .target(name: "ProcessServiceClient", dependencies: ["ProcessServiceShared", "ConcurrencyPlus", "ProcessEnv"]),
 		.binaryTarget(name: "ProcessServiceContainer", path: "ProcessServiceContainer.xcframework"),
 
+		.testTarget(name: "ProcessServiceClientTests", dependencies: ["ProcessServiceClient", "ConcurrencyPlus", "ProcessServiceContainer"]),
 		.testTarget(name: "ProcessServiceServerTests", dependencies: ["ProcessServiceServer", "ConcurrencyPlus"]),
     ]
 )

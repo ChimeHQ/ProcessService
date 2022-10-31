@@ -11,14 +11,6 @@ enum UnrestrictedProcessError: Error {
     case connectionInvalid
 }
 
-extension Process {
-    public enum Event {
-        case stdout(Data)
-        case stderr(Data)
-        case terminated(Process.TerminationReason)
-    }
-}
-
 /// An interface to a remote ExportedProcessService instance
 ///
 /// You can use this class to start and control a remote `ExportedProcessService`.
@@ -121,8 +113,8 @@ public actor HostedProcess {
                     switch event {
                     case .stdout(let stdout):
                         data.append(stdout)
-                    default:
-                        break
+					case .stderr, .terminated:
+						break
                     }
                 }
             }
