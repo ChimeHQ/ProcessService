@@ -122,6 +122,11 @@ public actor HostedProcess {
             return data
         }.value
     }
+    
+    /// The process ID (PID) of the XPC service itself (not its hosted executable)
+    public var serviceProcessID: Int {
+        Int(connection.processIdentifier)
+    }
 }
 
 extension HostedProcess {
