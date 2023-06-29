@@ -1,75 +1,69 @@
 import Foundation
 import Combine
 
-import ConcurrencyPlus
 import ProcessServiceShared
+import Queue
 
 public actor ExportedProcessServiceClient {
-    public typealias ProcessEventSubject = PassthroughSubject<Process.Event, Error>
-#if swift(>=5.7)
-    public typealias ProcessEventPublisher = Publisher<Process.Event, Error>
-#else
-    public typealias ProcessEventPublisher = AnyPublisher<Process.Event, Error>
-#endif
+	public typealias EventSequence = AsyncStream<Process.Event>
+	private typealias SequencePair = (stream: EventSequence, continuation: EventSequence.Continuation)
 
-    private var processEventSubjects = [UUID: ProcessEventSubject]()
-    private let taskQueue = TaskQueue()
+	private var processEventPairs = [UUID: SequencePair]()
+	private let queue = AsyncQueue()
 
     public init() {
     }
 
-    private func processEventSubject(for identifier: UUID) -> ProcessEventSubject {
-        if let subject = processEventSubjects[identifier] {
-            return subject
+    private func processEventPair(for identifier: UUID) -> SequencePair {
+        if let pair = processEventPairs[identifier] {
+            return pair
         }
 
-        let subject = ProcessEventSubject()
+		let pair = EventSequence.makeStream()
 
-        processEventSubjects[identifier] = subject
+		processEventPairs[identifier] = pair
 
-        return subject
+        return pair
     }
 
-    private func removeSubject(for identifier: UUID) {
-        precondition(processEventSubjects[identifier] != nil)
+    private func removePair(for identifier: UUID) {
+        precondition(processEventPairs[identifier] != nil)
 
-        self.processEventSubjects[identifier] = nil
+		processEventPairs[identifier]?.continuation.finish()
+        self.processEventPairs[identifier] = nil
     }
 
-#if swift(>=5.7)
-    public func processEventPublisher(for identifier: UUID) -> some ProcessEventPublisher {
-        return processEventSubject(for: identifier)
+	public func processEventSequence(for identifier: UUID) -> EventSequence {
+		return processEventPair(for: identifier).stream
     }
-#else
-    public func processEventPublisher(for identifier: UUID) -> ProcessEventPublisher {
-        return processEventSubject(for: identifier).eraseToAnyPublisher()
-    }
-#endif
 }
 
 extension ExportedProcessServiceClient: ProcessServiceClientXPCProtocol {
     public nonisolated func launchedProcess(with identifier: UUID, stdoutData: Data) {
-        taskQueue.addOperation {
-            await self.processEventSubject(for: identifier).send(.stdout(stdoutData))
-        }
+		queue.addOperation {
+			let pair = await self.processEventPair(for: identifier)
+			
+			pair.continuation.yield(.stdout(stdoutData))
+		}
     }
 
     public nonisolated func launchedProcess(with identifier: UUID, stderrData: Data) {
-        taskQueue.addOperation {
-            await self.processEventSubject(for: identifier).send(.stderr(stderrData))
-        }
+		queue.addOperation {
+			let pair = await self.processEventPair(for: identifier)
+
+			pair.continuation.yield(.stderr(stderrData))
+		}
     }
 
     public nonisolated func launchedProcess(with identifier: UUID, terminated: Int) {
         let reason = Process.TerminationReason(rawValue: terminated) ?? .exit
 
-        taskQueue.addOperation {
-            let subject = await self.processEventSubject(for: identifier)
+		queue.addOperation {
+            let pair = await self.processEventPair(for: identifier)
 
-            await self.removeSubject(for: identifier)
+			pair.continuation.yield(.terminated(reason))
 
-            subject.send(.terminated(reason))
-            subject.send(completion: .finished)
+			await self.removePair(for: identifier)
         }
     }
 }

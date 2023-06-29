@@ -2,12 +2,12 @@
   "object": {
     "pins": [
       {
-        "package": "ConcurrencyPlus",
-        "repositoryURL": "https://github.com/ChimeHQ/ConcurrencyPlus",
+        "package": "AsyncXPCConnection",
+        "repositoryURL": "https://github.com/ChimeHQ/AsyncXPCConnection",
         "state": {
-          "branch": null,
-          "revision": "a8abc2202ba82c5782894cb5665dc338ee68d272",
-          "version": "0.4.0"
+          "branch": "main",
+          "revision": "d412536e2b198a405ca641b782e59f2853dedd6d",
+          "version": null
         }
       },
       {
@@ -17,6 +17,15 @@
           "branch": null,
           "revision": "29487b6581bb785c372c611c943541ef4309d051",
           "version": "0.3.1"
+        }
+      },
+      {
+        "package": "Queue",
+        "repositoryURL": "https://github.com/mattmassicotte/Queue",
+        "state": {
+          "branch": null,
+          "revision": "8d6f936097888f97011610ced40313655dc5948d",
+          "version": "0.1.4"
         }
       }
     ]

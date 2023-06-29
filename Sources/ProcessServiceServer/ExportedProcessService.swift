@@ -1,6 +1,5 @@
 import Foundation
 
-import ConcurrencyPlus
 import ProcessEnv
 import ProcessServiceShared
 
@@ -194,25 +193,43 @@ final class ExportedProcessService: @unchecked Sendable {
 }
 
 extension ExportedProcessService: ProcessServiceXPCProtocol {
-    nonisolated func launchProcess(at url: URL, arguments: [String], environment: [String : String]?, currentDirectoryURL: URL?, reply: @escaping (UUID?, Error?) -> Void) {
+    nonisolated func launchProcess(at url: URL, arguments: [String], environment: [String : String]?, currentDirectoryURL: URL?, reply: @Sendable @escaping (UUID?, Error?) -> Void) {
 		let params = Process.ExecutionParameters(path: url.path,
 												 arguments: arguments,
 												 environment: environment,
 												 currentDirectoryURL: currentDirectoryURL)
-        Task.relayResult(to: reply) {
-			return try await self.launchProcess(with: params)
+        Task {
+			do {
+				let value = try await self.launchProcess(with: params)
+				
+				reply(value, nil)
+			} catch {
+				reply(nil, error)
+			}
         }
     }
 
-    nonisolated func terminateProcess(with identifier: UUID, reply: @escaping (Error?) -> Void) {
-        Task.relayResult(to: reply) {
-            try await self.terminateProcess(with: identifier)
+    nonisolated func terminateProcess(with identifier: UUID, reply: @Sendable @escaping (Error?) -> Void) {
+        Task {
+			do {
+				try await self.terminateProcess(with: identifier)
+				
+				reply(nil)
+			} catch {
+				reply(error)
+			}
         }
     }
 
-    nonisolated func writeDataToStdin(_ data: Data, for identifier: UUID, reply: @escaping (Error?) -> Void) {
-        Task.relayResult(to: reply) {
-            try await self.writeDataToStdin(data, for: identifier)
+    nonisolated func writeDataToStdin(_ data: Data, for identifier: UUID, reply: @Sendable @escaping (Error?) -> Void) {
+        Task {
+			do {
+				try await self.writeDataToStdin(data, for: identifier)
+				
+				reply(nil)
+			} catch {
+				reply(error)
+			}
         }
     }
 

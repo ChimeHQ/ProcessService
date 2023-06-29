@@ -2,10 +2,10 @@ import Foundation
 import Combine
 
 @objc public protocol ProcessServiceXPCProtocol {
-    func launchProcess(at url: URL, arguments: [String], environment: [String : String]?, currentDirectoryURL: URL?, reply: @escaping (UUID?, Error?) -> Void)
-    func terminateProcess(with identifier: UUID, reply: @escaping (Error?) -> Void)
+    func launchProcess(at url: URL, arguments: [String], environment: [String : String]?, currentDirectoryURL: URL?, reply: @Sendable @escaping (UUID?, Error?) -> Void)
+    func terminateProcess(with identifier: UUID, reply: @Sendable @escaping (Error?) -> Void)
 
-    func writeDataToStdin(_ data: Data, for identifier: UUID, reply: @escaping (Error?) -> Void)
+    func writeDataToStdin(_ data: Data, for identifier: UUID, reply: @Sendable @escaping (Error?) -> Void)
 
     func captureUserEnvironment(reply: @escaping ([String: String]?, Error?) -> Void)
 	func userShellInvocation(of executionParametersData: Data, reply: @escaping (Data?, Error?) -> Void)

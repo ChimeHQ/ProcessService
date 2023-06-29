@@ -1,52 +1,63 @@
 import XCTest
 
-import ConcurrencyPlus
 import ProcessServiceShared
 @testable import ProcessServiceServer
 
+#if compiler(>=5.9)
 final class MockClient: ProcessServiceClientXPCProtocol {
-	var eventHandler: (UUID, Process.Event) -> Void = { _, _ in }
+	typealias EventSequence = AsyncStream<(UUID, Process.Event)>
+
+	let eventSequence: EventSequence
+	private let continuation: EventSequence.Continuation
 
 	public init() {
+		(self.eventSequence, self.continuation) = EventSequence.makeStream()
 	}
 
 	public func launchedProcess(with identifier: UUID, stdoutData: Data) {
-		eventHandler(identifier, .stdout(stdoutData))
+		continuation.yield((identifier, .stdout(stdoutData)))
 	}
 
 	public func launchedProcess(with identifier: UUID, stderrData: Data) {
-		eventHandler(identifier, .stderr(stderrData))
+		continuation.yield((identifier, .stderr(stderrData)))
 	}
 
 	public func launchedProcess(with identifier: UUID, terminated: Int) {
-		eventHandler(identifier, .terminated(Process.TerminationReason(rawValue: terminated)!))
+		let event = Process.Event.terminated(Process.TerminationReason(rawValue: terminated)!)
+
+		continuation.yield((identifier, event))
 	}
 }
 
-class ExportedProcessServiceTests: XCTestCase {
+final class ExportedProcessServiceTests: XCTestCase {
+	typealias EventStream = AsyncStream<(UUID, Process.Event)>
+
 	func testCaptureEnviroment() async throws {
 		let client = MockClient()
 		let service = ExportedProcessService(client: client)
 
-		let value = try await withCheckedThrowingContinuation({ continuation in
-			service.captureUserEnvironment(reply: continuation.resumingHandler)
-		})
+		let value = try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<[String: String], Error>) in
+			service.captureUserEnvironment(reply: { env, error in
+				if let error = error {
+					continuation.resume(throwing: error)
+					return
+				}
+
+				continuation.resume(returning: env!)
+			})
+		}
 
 		// just a simple check to ensure we got something from the environment
 		XCTAssertNotNil(value["USER"])
 	}
 
 	func testLaunchProcess() async throws {
-		let subject = AsyncSubject<(UUID, Process.Event)>()
 		let client = MockClient()
-
-		client.eventHandler = { subject.send(($0, $1)) }
-
 		let service = ExportedProcessService(client: client)
 
 		self.continueAfterFailure = false
 
-		var events = subject.map({ $0.1 }).makeAsyncIterator()
+		var events = client.eventSequence.map({ $0.1 }).makeAsyncIterator()
 
 		_ = try await service.launchProcess(with: .init(path: "/bin/echo", arguments: ["-n", "hello"]))
 
@@ -60,16 +71,13 @@ class ExportedProcessServiceTests: XCTestCase {
 	}
 
 	func testTerminationReadingRace() async throws {
-		let subject = AsyncSubject<(UUID, Process.Event)>()
 		let client = MockClient()
 		let service = ExportedProcessService(client: client)
 		let params = Process.ExecutionParameters(path: "/bin/echo", arguments: ["-n", "hello"])
 
-		client.eventHandler = { subject.send(($0, $1)) }
-
 		self.continueAfterFailure = false
 
-		var events = subject.map({ $0.1 }).makeAsyncIterator()
+		var events = client.eventSequence.map({ $0.1 }).makeAsyncIterator()
 
 		for _ in 0..<30000 {
 //			print("iteration start \(i)")
@@ -88,3 +96,4 @@ class ExportedProcessServiceTests: XCTestCase {
 		}
 	}
 }
+#endif

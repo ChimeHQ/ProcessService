@@ -9,13 +9,13 @@ on:
       - '**'
 
 env:
-  DEVELOPER_DIR: /Applications/Xcode_14.1.app/Contents/Developer
+  DEVELOPER_DIR: /Applications/Xcode_15.0.app/Contents/Developer
 
 jobs:
   test:
     name: Test
-    runs-on: macOS-12
+    runs-on: macOS-13
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Build
         run: set -o pipefail && xcodebuild -scheme ProcessService-Package -destination "platform=macOS" build | xcpretty
