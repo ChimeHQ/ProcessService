@@ -5,9 +5,9 @@
         "package": "AsyncXPCConnection",
         "repositoryURL": "https://github.com/ChimeHQ/AsyncXPCConnection",
         "state": {
-          "branch": "main",
+          "branch": null,
           "revision": "d412536e2b198a405ca641b782e59f2853dedd6d",
-          "version": null
+          "version": "0.1.0"
         }
       },
       {

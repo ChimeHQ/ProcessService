@@ -17,7 +17,7 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/ChimeHQ/ProcessEnv", from: "0.3.1"),
 		.package(url: "https://github.com/mattmassicotte/Queue", from: "0.1.3"),
-		.package(url: "https://github.com/ChimeHQ/AsyncXPCConnection", branch: "main"),
+		.package(url: "https://github.com/ChimeHQ/AsyncXPCConnection", from: "0.1.0"),
     ],
     targets: [
         .target(name: "ProcessServiceShared"),
