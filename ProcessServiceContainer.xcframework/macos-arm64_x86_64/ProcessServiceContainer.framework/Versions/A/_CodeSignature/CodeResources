@@ -6,7 +6,7 @@
 	<dict>
 		<key>Resources/Info.plist</key>
 		<data>
-		Jwa487BfGprw1mMXe8JyGThSCuw=
+		RZnZ6ct3Dhjj8RKmYd6ifiJeQzo=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -15,7 +15,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			eH2wFlHiM5XX7jI10QYU10LY1RgPA+SQRe3EKseSCOk=
+			T8SZSfy4kYg3ZCvyPrCzGXh75Sh7PWahsEsHIGXew5E=
 			</data>
 		</dict>
 		<key>Headers/ProcessServiceContainer.h</key>
@@ -29,108 +29,108 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			zrnLp/76N3KqnZLS9upwYglvVbLAmJCv4VzQ7OQkDyY=
+			WzhMvmsHal3SXfuHhcJAp6ulXCRu1DJYo6G1EtOpPWk=
 			</data>
 		</dict>
 		<key>Modules/ProcessServiceContainer.swiftmodule/Project/x86_64-apple-macos.swiftsourceinfo</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			SePHw+yQWSxHBeIblfR3tOwCm9PaEeIb+cOPAUdQRrs=
+			XPkBD2P82Uss9wH1aFpuror6xnwsF7urLoEyW1H1EZY=
 			</data>
 		</dict>
 		<key>Modules/ProcessServiceContainer.swiftmodule/arm64-apple-macos.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			JHAOtsQLrdmANRTDY3VssGQyoz7uCWwPnrb3s9B5V4Q=
+			nn/YNpN572j458axzwlfAhP54PA15SuVLL5xIzZ7IHc=
 			</data>
 		</dict>
 		<key>Modules/ProcessServiceContainer.swiftmodule/arm64-apple-macos.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			IOi3ReDXhRYMnzm8UYjl8EISpnPbCCCrpEDDfvLk9Qk=
+			HIsE/594N6HTlHdAseqobCC1HuzViyJD8QokCqGG8Wc=
 			</data>
 		</dict>
 		<key>Modules/ProcessServiceContainer.swiftmodule/arm64-apple-macos.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			kiVXXim86MM4xV4tAQ7uqFAei6wKFuADJObtFSjwO2c=
+			m8YsEp4Ghl31bf7LzAvYitjo56gF4meLxpGh4YJlVbQ=
 			</data>
 		</dict>
 		<key>Modules/ProcessServiceContainer.swiftmodule/arm64-apple-macos.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			IOi3ReDXhRYMnzm8UYjl8EISpnPbCCCrpEDDfvLk9Qk=
+			HIsE/594N6HTlHdAseqobCC1HuzViyJD8QokCqGG8Wc=
 			</data>
 		</dict>
 		<key>Modules/ProcessServiceContainer.swiftmodule/arm64-apple-macos.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			WwMflgQ6ATxP08y+0Aj1UlIijzhDZckRol6sdf4+Ids=
+			fTWsvNyxlsACU9JEs5Pcu8dtbT96p0HOGbbwRY/KR0c=
 			</data>
 		</dict>
 		<key>Modules/ProcessServiceContainer.swiftmodule/x86_64-apple-macos.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			JHAOtsQLrdmANRTDY3VssGQyoz7uCWwPnrb3s9B5V4Q=
+			nn/YNpN572j458axzwlfAhP54PA15SuVLL5xIzZ7IHc=
 			</data>
 		</dict>
 		<key>Modules/ProcessServiceContainer.swiftmodule/x86_64-apple-macos.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			FnBhXM8rKg7k5XK9CoXbJuiBdbDvH+8wR25a9WSz9/I=
+			LNJvVG4T1GMg3MIs1eAqfyXfsedUP0oPq2W1QG7kokQ=
 			</data>
 		</dict>
 		<key>Modules/ProcessServiceContainer.swiftmodule/x86_64-apple-macos.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			J612jsoSLvE1kaGTYTOA1YVmWvMWXSpfn9x4LavY+mE=
+			ZmPeALw4lQNrPiFdVrwSebcpHiX5/grHe1AMUgsoYPg=
 			</data>
 		</dict>
 		<key>Modules/ProcessServiceContainer.swiftmodule/x86_64-apple-macos.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			FnBhXM8rKg7k5XK9CoXbJuiBdbDvH+8wR25a9WSz9/I=
+			LNJvVG4T1GMg3MIs1eAqfyXfsedUP0oPq2W1QG7kokQ=
 			</data>
 		</dict>
 		<key>Modules/ProcessServiceContainer.swiftmodule/x86_64-apple-macos.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			sEoBstn+Ifk1SdHeaQVZQQMCC8JK5Nyv/403OBL1CMA=
+			LW9hJYQ3xNoQyOpoTf6yhPmd/qYA+4UgjdO50Cm4o3Y=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			PxyfLpNC9yRG6raCAPw6X37x2mHlbasoLtDBXXCBNz8=
+			hkmZUBnCHkWcSciUJEXeeva9WB27l3T4qtE+ALMYSjE=
 			</data>
 		</dict>
 		<key>Resources/Info.plist</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			xk0ddvhqFDHwgSqNOhjMXa7cFdH7ZEa5BUc0gdrsrcM=
+			1t+jynQseWYIwPz2cicqxbS4+UsRtceEzFeSi0PNlIM=
 			</data>
 		</dict>
 		<key>XPCServices/ProcessService.xpc</key>
 		<dict>
 			<key>cdhash</key>
 			<data>
-			pPsMiQ706Af2fJq1CtgEuaVrIOw=
+			TCKzFtWLIZbWe7gw0UZx6ot6KDY=
 			</data>
 			<key>requirement</key>
-			<string>cdhash H"a4fb0c890ef4e807f67c9ab50ad804b9a56b20ec" or cdhash H"fc08a024adb9f70edcb0a9027fc30d6056a2a536"</string>
+			<string>cdhash H"4c22b316d58b2196d67bb830d14671ea8b7a2836" or cdhash H"8ba0698fe3add4fbc540c50ee89e12a513ee478d"</string>
 		</dict>
 	</dict>
 	<key>rules</key>

@@ -2,7 +2,7 @@
 
 set -euxo pipefail
 
-xcodebuild -project Projects/ProcessServiceExample.xcodeproj -scheme ProcessServiceContainer -destination "platform=macOS" -derivedDataPath DerivedData -configuration Release build
+xcodebuild -project "Xcode Project/ProcessServiceExample.xcodeproj" -scheme ProcessServiceContainer -destination "platform=macOS" -derivedDataPath DerivedData -configuration Release build
 
 PRODUCTS_PATH="$PWD/DerivedData/Build/Products/Release"
 FRAMEWORK_PATH="$PRODUCTS_PATH/ProcessServiceContainer.framework"

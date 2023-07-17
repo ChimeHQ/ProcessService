@@ -1,7 +1,7 @@
 framework module ProcessServiceContainer {
   umbrella header "ProcessServiceContainer.h"
-
   export *
+
   module * { export * }
 }
 

@@ -34,6 +34,10 @@ public actor HostedProcess {
     deinit {
         connection.invalidate()
 		eventContinuation.finish()
+		
+		if let (_, task) = state {
+			task.cancel()
+		}
     }
 
     public func launch() async throws {

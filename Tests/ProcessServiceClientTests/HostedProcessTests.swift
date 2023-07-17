@@ -33,4 +33,25 @@ final class HostedProcessTests: XCTestCase {
 			XCTAssertEqual(value, "hello\n")
 		}
 	}
+
+	func testWriting() async throws {
+		let params = Process.ExecutionParameters(path: "/usr/bin/tee", arguments: ["/dev/null"])
+		let process = HostedProcess(named: ServiceContainer.name, parameters: params)
+
+		try await process.launch()
+
+		var iterator = await process.eventSequence.makeAsyncIterator()
+
+		try await process.write(Data("hello\n".utf8))
+
+		let first = await iterator.next()
+
+		XCTAssertEqual(first, .stdout(Data("hello\n".utf8)))
+
+		try await process.write(Data("goodbye\n".utf8))
+
+		let second = await iterator.next()
+
+		XCTAssertEqual(second, .stdout(Data("goodbye\n".utf8)))
+	}
 }

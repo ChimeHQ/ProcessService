@@ -3,7 +3,7 @@
 import PackageDescription
 
 let settings: [SwiftSetting] = [
-//	.unsafeFlags(["-Xfrontend", "-strict-concurrency=complete"])
+	.unsafeFlags(["-Xfrontend", "-strict-concurrency=complete"])
 ]
 
 let package = Package(
@@ -17,7 +17,7 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/ChimeHQ/ProcessEnv", from: "0.3.1"),
 		.package(url: "https://github.com/mattmassicotte/Queue", from: "0.1.3"),
-		.package(url: "https://github.com/ChimeHQ/AsyncXPCConnection", from: "0.1.0"),
+		.package(url: "https://github.com/ChimeHQ/AsyncXPCConnection", revision: "82a0eb00a0d881e6a65cad0acc031c1efd058d06"),
     ],
     targets: [
         .target(name: "ProcessServiceShared"),
